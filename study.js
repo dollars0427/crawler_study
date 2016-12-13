@@ -7,6 +7,7 @@ $ = cheerio.load(html);
 var articles = [];
 
 $('.news-list').find('li').each(function(){
+  var title = $(this).find('h3 a').text();
   var author = $(this).find('.account').text();
   var authorLink = $(this).find('.account').attr('href');
   var postDate = $(this).find('.s2').text();
@@ -19,6 +20,7 @@ $('.news-list').find('li').each(function(){
   }
 
   var article = {
+    title: title,
     author: author,
     authorLink: authorLink,
     link: link,
@@ -28,5 +30,14 @@ $('.news-list').find('li').each(function(){
   articles.push(article);
 });
 
+var pageNumber = $('.p-fy span').text();
+
 var nextPage = 'http://weixin.sogou.com/weixin' + $('a[id="sogou_next"]').attr('href');
-var result = {articles: articles, nextPage: nextPage};
+
+var result = {
+    articles: articles, 
+    nextPage: nextPage, 
+    pageNumber: pageNumber
+};
+
+console.log(result);
