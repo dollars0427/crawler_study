@@ -1,5 +1,14 @@
 var fs = require('fs');
 var cheerio = require('cheerio');
+var webshot = require('webshot');
+var fs = require('fs');
+
+var url = '';
+var option = {
+  renderDelay: 60000
+};
+
+var renderStream = webshot(url, 'webshot.png', option, function(err){});
 
 var html = fs.readFileSync('test.html', 'utf8');
 $ = cheerio.load(html);
@@ -35,8 +44,8 @@ var pageNumber = $('.p-fy span').text();
 var nextPage = 'http://weixin.sogou.com/weixin' + $('a[id="sogou_next"]').attr('href');
 
 var result = {
-    articles: articles, 
-    nextPage: nextPage, 
+    articles: articles,
+    nextPage: nextPage,
     pageNumber: pageNumber
 };
 
