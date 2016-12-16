@@ -2,7 +2,6 @@ var fs = require('fs');
 var cheerio = require('cheerio');
 var webshot = require('webshot');
 var fileType = require('file-type');
-var fs = require('fs');
 
 var articleList = fs.readFileSync('test.html', 'utf8');
 

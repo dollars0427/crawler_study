@@ -1,11 +1,17 @@
 var page = require('webpage').create();
-var url = "http://mp.weixin.qq.com/s?timestamp=1481860922&src=3&ver=1&signature=NSHhzaanpeK1gahxw0u-8DSKsBL63f*bg1XTV9JTnqsUp7vnSRY629rfyVCwVb1aJ2b85ikgl*GFA2VfYVKVi*1Oxh2x2WcgGq3bsC0Ld0YeKKxptYH6HtGp02x0kxh-vGdDh5LPMH3uUyrILafD52UxFUiljMqyP34yXHpORSg=";
+var system = require('system');
+var args = system.args;
+var url = args[1];
+
+page.customHeaders = {
+  "X-Test": "foo",
+  "DNT": "1"
+};
+
+//var url = "http://mp.weixin.qq.com/s?src=3&timestamp=1481856834&ver=1&signature=ev5QYqU9aIvwaeqel6LiYivSQFxhRZ-L6zHbiqGX7A1e-FW6-AzoM*Oo*aYsHJrIaJEz7CHx*0Azcy5NT4jwPzn0Ha2pbXioJ-ryZdU3D-8tJ4CQJrYndO2ZOzmuAVp-W59S1*1wzC14TZK1LOmWpevKl1pwN0CZ6kCqGf99iOQ=";
 page.open(url, function() {
   page.includeJs("https://code.jquery.com/jquery-3.1.1.slim.min.js", function () {
-           var content = page.evaluate(function () {
-             return $('#sg_cmt_list').html();
-           });
-           console.log(content);
+           console.log(page.content);
            phantom.exit();
          });
 });
