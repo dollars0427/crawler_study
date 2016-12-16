@@ -6,12 +6,10 @@ page.open(url, function (status) {
 
 function just_wait() {
    page.includeJs("http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js", function () {
-     setTimeout(function() {
             var content = page.evaluate(function () {
               return $('#sg_cmt_list').html();
             });
             console.log(content);
             phantom.exit();
-    }, 2000);
    });
 }
