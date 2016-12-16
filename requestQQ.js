@@ -10,5 +10,4 @@ var childArgs = [
 
 childProcess.execFile(binPath, childArgs, function(err, stdout, stderr) {
   console.log(stdout);
-  console.log(stderr);
 })
